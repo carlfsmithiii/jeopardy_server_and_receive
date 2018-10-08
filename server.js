@@ -1,6 +1,6 @@
 const express = require('express');
 const fs = require('fs');
-const categories = require('./public/categories.json');
+const categories = require('./data/categories.json');
 // const categories = require('./categories.json');
 
 const app = express();
