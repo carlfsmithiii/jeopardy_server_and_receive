@@ -98,27 +98,13 @@ class QuestionCell extends Cell {
 
 class CategoryObjectsList {
     constructor(categoryList) {
-        let categories = [];
-        for (let categoryNumber of categoryList) {
-            // categories.push(fetch(`https://cors-anywhere.herokuapp.com/http://jservice.io/api/category?id=${categoryNumber}`).then(res => res.json()));
-            // categories.push(fetch(`http://localhost:3000/api/category/${categoryNumber}`, {method: 'GET', mode: "no-cors", cache: 'no-cache', credentials: 'same-origin'}).then(res => res.json()));
-            // categories.push(fetch(`http://localhost:3000/api/category/${categoryNumber}`, {mode: "no-cors"}).then(res => res.json()));
-            categories.push(fetch(`http://localhost:3000/api/category/${categoryNumber}`).then(res => res.json()));
-        }
-        this.list = Promise.all(categories).then(categoryObjects => categoryObjects);
-        // console.log(this.list);
+        const categoryPromises = categoryList.map(id => fetch(`http://localhost:3000/api/category/${id}`).then(res => res.json()));
+        this.list = Promise.all(categoryPromises).then(categoryObjects => categoryObjects);
     }
 }
-
-
-// let categoryList = fetch(new CategoryObjectsList([21, 508, 561, 420, 37, 1195])).then;
-
 
 async function generateJeopardy(parentNode, categoryList, moneyIncrement) {
     const categoryObjectsList = await(new CategoryObjectsList(categoryList));
     const grid = new JeopardyGrid(parentNode, categoryObjectsList, moneyIncrement);
     return grid;
 }
-
-//generateJeopardy([21, 508, 561, 420, 37, 1195]);
-
