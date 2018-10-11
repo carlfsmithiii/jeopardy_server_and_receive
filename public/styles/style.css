@@ -37,7 +37,7 @@ body {
     height: var(--cell-dimension);
     width: var(--cell-dimension);
     text-align: center;
-    line-height: var(--cell-dimension);
+    line-height: calc(var(--cell-dimension) / 2);
     box-sizing: border-box;
 }
 
@@ -63,7 +63,8 @@ body {
 
 @keyframes questionExpand {
     from {
-        font-size: 1.5vh;
+        /* font-size: 1.5vh; */
+        font-size: 1.2vh;
         line-height: 2vh;
     }
     to {
@@ -71,7 +72,8 @@ body {
         width: 100%;
         top: 0;
         left: 0;
-        font-size: 10vh;
+        font-size: 7vh;
+        /* font-size: scale(600%); */
         line-height: 12vh;
     }
 }
